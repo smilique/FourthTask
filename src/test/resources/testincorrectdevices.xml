@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<devices xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="urn:com.example"
+         xsi:schemaLocation="urn:com.example testdevices.xsd">
+
+    <peripheralDevice id="a1111" in-stock="true">
+        <type>keyboard</type>
+        <name>Keyless Genesis</name>
+        <price>75</price>
+        <backlight>true</backlight>
+        <connection>bluetooth</connection>
+    </peripheralDevice>
+    <peripheralDevice>
+        <type>webcam</type>
+        <name>Blindman Web Cam</name>
+        <price>250</price>
+        <backlight>false</backlight>
+        <connection>USB</connection>
+    </peripheralDevice>
+    <nonPeripheralDevice id="c3333" in-stock="true">
+        <type>motherboard</type>
+        <name>MN1700 Motherboard</name>
+        <price>740</price>
+        <backlight>true</backlight>
+        <connection>A1</connection>
+    </nonPeripheralDevice>
+    <nonPeripheralDevice id="d4444" in-stock="false">
+        <type>processor</type>
+        <name>Champion 34230X</name>
+        <price>1400</price>
+        <backlight>false</backlight>
+        <slot>A1</slot>
+    </nonPeripheralDevice>
+
+</devices>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<devices xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="urn:com.example"
+         xsi:schemaLocation="urn:com.example devices.xsd">
+
+    <peripheralDevice id="a78234" in-stock="true">
+        <type>keyboard</type>
+        <name>Keyless Genesis</name>
+        <price>75</price>
+        <backlight>true</backlight>
+        <connection>bluetooth</connection>
+    </peripheralDevice>
+    <peripheralDevice id="b4584">
+        <type>webcam</type>
+        <name>Blindman Web Cam</name>
+        <price>250</price>
+        <backlight>false</backlight>
+        <connection>USB</connection>
+    </peripheralDevice>
+    <peripheralDevice id="se344">
+        <type>mouse</type>
+        <name>Milisoft Shark Mouse</name>
+        <price>0.5</price>
+        <backlight>false</backlight>
+        <connection>Bluetooth</connection>
+    </peripheralDevice>
+    <peripheralDevice id="sf56hj">
+        <type>mouse</type>
+        <name>Shmell Pointer</name>
+        <price>149</price>
+        <backlight>true</backlight>
+        <connection>USB</connection>
+    </peripheralDevice>
+    <nonPeripheralDevice id="dg6j4" in-stock="true">
+        <type>motherboard</type>
+        <name>MN1700 Motherboard</name>
+        <price>740</price>
+        <backlight>true</backlight>
+        <slot>A777</slot>
+    </nonPeripheralDevice>
+    <nonPeripheralDevice id="rt544" in-stock="false">
+        <type>processor</type>
+        <name>Champion 34230X</name>
+        <price>1400</price>
+        <backlight>false</backlight>
+        <slot>A777</slot>
+    </nonPeripheralDevice>
+    <nonPeripheralDevice id="i0189" in-stock="true">
+        <type>memory</type>
+        <name>REmember X.Skill 16Gb</name>
+        <price>245</price>
+        <backlight>true</backlight>
+        <slot>DIMM</slot>
+    </nonPeripheralDevice>
+
+</devices>

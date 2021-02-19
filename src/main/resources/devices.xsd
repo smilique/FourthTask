@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="urn:com.example"
+           xmlns:xs="urn:com.example"
+           elementFormDefault="qualified">
+
+    <element name="devices">
+        <complexType>
+            <sequence>
+                <element name="peripheralDevice" type="xs:peripheral" minOccurs="2" maxOccurs="unbounded"/>
+                <element name="nonPeripheralDevice" type="xs:non-peripheral" minOccurs="2" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+        <complexType name="device">
+            <sequence>
+                <element name="type" >
+                    <simpleType>
+                        <restriction base="string">
+                            <enumeration value="mouse"/>
+                            <enumeration value="keyboard"/>
+                            <enumeration value="processor"/>
+                            <enumeration value="motherboard"/>
+                            <enumeration value="memory"/>
+                            <enumeration value="webcam"/>
+                            <enumeration value="FDD"/>
+                        </restriction>
+                    </simpleType>
+                </element>
+                <element name="name">
+                    <simpleType>
+                        <restriction base="string">
+                            <pattern value="[\w+\\.,*\s]+"/>
+                            <maxLength value="30"/>
+                            <minLength value="3"/>
+                        </restriction>
+                    </simpleType>
+                </element>
+                <element name="price">
+                        <simpleType>
+                            <restriction base="double">
+                                <minInclusive value="0"/>
+                            </restriction>
+                        </simpleType>
+                </element>
+                <element name="backlight" type="boolean"/>
+            </sequence>
+            <attribute name="id" use="required">
+                <simpleType>
+                <restriction base="ID">
+                    <pattern value="([a-zA-Z])[a-zA-Z0-9]{4,7}"/>
+                </restriction>
+            </simpleType>
+            </attribute>
+            <attribute name="in-stock" default="false" type="boolean"/>
+        </complexType>
+
+    <complexType name="peripheral">
+        <complexContent>
+            <extension base="xs:device">
+                <sequence>
+                    <element name="connection" type="string"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+
+    <complexType name="non-peripheral">
+        <complexContent>
+            <extension base="xs:device">
+                <sequence>
+                    <element name="slot" type="string"/>
+                </sequence>
+            </extension>
+        </complexContent>
+    </complexType>
+</schema>
