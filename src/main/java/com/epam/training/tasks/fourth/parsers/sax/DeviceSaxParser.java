@@ -14,11 +14,13 @@ public class DeviceSaxParser implements DeviceParser {
 
     private static final Logger LOGGER = Logger.getLogger(DeviceSaxParser.class);
 
+    private final DeviceSaxHandler handler;
+
     private List<Device> devices;
-    private DeviceSaxHandler handler;
     private XMLReader reader;
 
     public DeviceSaxParser() {
+        LOGGER.info("Parsing with SAX");
         handler = new DeviceSaxHandler();
         try {
             reader = XMLReaderFactory.createXMLReader();

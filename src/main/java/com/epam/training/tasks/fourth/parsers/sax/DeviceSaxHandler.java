@@ -11,7 +11,6 @@ import org.xml.sax.helpers.DefaultHandler;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
-import java.util.Locale;
 
 import static com.epam.training.tasks.fourth.entities.DeviceEnum.*;
 
@@ -27,8 +26,6 @@ public class DeviceSaxHandler extends DefaultHandler {
     public DeviceSaxHandler() {
         devices = new ArrayList<>();
         withText = EnumSet.range(DEVICES,CONNECTION);
-
-        LOGGER.info("Enum range " + DEVICES + " " + CONNECTION);
     }
 
     public List<Device> getDevices() {
@@ -37,39 +34,46 @@ public class DeviceSaxHandler extends DefaultHandler {
         return devices;
     }
 
-    private PeripheralDevice parseAttributes(PeripheralDevice device, Attributes attributes) {
+    private void setAttributes(Device device, Attributes attributes) {
+        LOGGER.info("Setting attributes to " + device);
 
+        String id = attributes.getValue(0);
+        device.setId(id);
+        if (attributes.getLength() == 2) {
+            String isInStock = attributes.getValue(1);
+            boolean inStock = Boolean.parseBoolean(isInStock);
+            device.setInStock(inStock);
+        }
     }
 
     public void startElement(String uri, String localName, String qName, Attributes attributes) {
- //change
-         if ("peripheralDevice".equals(localName)) {
-            currentDevice = new PeripheralDevice();
-            currentDevice.setId(attributes.getValue(0));
-            LOGGER.info("New " + localName + " found!");
-            if (attributes.getLength() == 2) {
-                LOGGER.info("Second attribute " + attributes.getValue(1));
-                String inStockAttribute = attributes.getValue(1);
-                currentDevice.setInStock(
-                        Boolean.parseBoolean(inStockAttribute));
-            }
-        } else if ("nonPeripheralDevice".equals(localName)) {
-            currentDevice = new NonPeripheralDevice();
-            currentDevice.setId(attributes.getValue(0));
-            LOGGER.info("New " + localName + " found!");
-            if (attributes.getLength() == 2) {
-                LOGGER.info("Second attribute " + attributes.getValue(1));
-                String inStockAttribute = attributes.getValue(1);
-                currentDevice.setInStock(
-                        Boolean.parseBoolean(inStockAttribute));
-            }
-        } else {
-            DeviceEnum temporaryEnum = DeviceEnum.valueOf(localName.toUpperCase(Locale.ROOT));
-            if (withText.contains(temporaryEnum)) {
-                currentEnum = temporaryEnum;
-            }
 
+        switch (localName) {
+            case "peripheralDevice": {
+                LOGGER.info("New " + localName + " found!");
+
+                currentDevice = new PeripheralDevice();
+                setAttributes(currentDevice, attributes);
+                break;
+            }
+            case "nonPeripheralDevice": {
+                LOGGER.info("New " + localName + " found!");
+
+                currentDevice = new NonPeripheralDevice();
+                setAttributes(currentDevice, attributes);
+                break;
+            }
+            default: {
+                String currentValue = localName.toUpperCase(); //Locale.ROOT if needed
+                DeviceEnum temporaryEnum = DeviceEnum.valueOf(currentValue);
+                if (withText.contains(temporaryEnum)) {
+                    currentEnum = temporaryEnum;
+                }
+                break;
+            }
         }
+
+
     }
 
     public void endElement(String uri, String localName, String qName) {
@@ -93,11 +97,13 @@ public class DeviceSaxHandler extends DefaultHandler {
                     break;
                 }
                 case PRICE: {
-                    currentDevice.setPrice(Double.parseDouble(element));
+                    double currentPrice = Double.parseDouble(element);
+                    currentDevice.setPrice(currentPrice);
                     break;
                 }
                 case BACKLIGHT: {
-                    currentDevice.setBacklight(Boolean.parseBoolean(element));
+                    boolean currentBacklight = Boolean.parseBoolean(element);
+                    currentDevice.setBacklight(currentBacklight);
                     break;
 
                 }
