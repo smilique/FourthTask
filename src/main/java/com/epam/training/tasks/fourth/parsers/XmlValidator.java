@@ -23,7 +23,7 @@ public class XmlValidator {
         this.schemaName = schemaName;
     }
 
-    boolean isValid (String fileName) {
+    public boolean isValid (String fileName) {
         LOGGER.info("Validating " + fileName);
         SchemaFactory schemaFactory = SchemaFactory.newInstance(language);
         File schemaLocation = new File(schemaName);
