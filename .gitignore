@@ -26,3 +26,5 @@ hs_err_pid*
 /.idea/
 /sh.exe.stackdump
 /target/
+/UML.mdj
+/UML.png

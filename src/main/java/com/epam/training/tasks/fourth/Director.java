@@ -2,7 +2,6 @@ package com.epam.training.tasks.fourth;
 
 
 import com.epam.training.tasks.fourth.entities.Device;
-import com.epam.training.tasks.fourth.entities.Devices;
 import com.epam.training.tasks.fourth.parsers.DeviceParser;
 import com.epam.training.tasks.fourth.parsers.XmlValidator;
 import org.apache.log4j.Logger;
@@ -29,6 +28,7 @@ public class Director {
             LOGGER.info("Parsing devices with " + parser);
             devices = parser.getParsedDevices();
         }
+
         return devices;
     }
 
