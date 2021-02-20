@@ -10,14 +10,14 @@ import static com.epam.training.tasks.fourth.parsers.ParserType.*;
 
 public class DeviceParserFactoryTest {
 
-    private final DeviceParserFactory factory = new DeviceParserFactory();
+    private final DeviceParserFactory FACTORY = new DeviceParserFactory();
 
     @Test
     public void testDeviceParserFactoryShouldReturnDomParserWhenDomRequested() {
         //given
         Class<DeviceDomParser> expected = DeviceDomParser.class;
         //when
-        DeviceParser parser = factory.createParser(DOM);
+        DeviceParser parser = FACTORY.createParser(DOM);
         Class<?> actual = parser.getClass();
         //then
         Assert.assertEquals(expected,actual);
@@ -28,7 +28,7 @@ public class DeviceParserFactoryTest {
         //given
         Class<DeviceSaxParser> expected = DeviceSaxParser.class;
         //when
-        DeviceParser parser = factory.createParser(SAX);
+        DeviceParser parser = FACTORY.createParser(SAX);
         Class<?> actual = parser.getClass();
         //then
         Assert.assertEquals(expected,actual);
@@ -39,7 +39,7 @@ public class DeviceParserFactoryTest {
         //given
         Class<DeviceJaxbParser> expected = DeviceJaxbParser.class;
         //when
-        DeviceParser parser = factory.createParser(JAXB);
+        DeviceParser parser = FACTORY.createParser(JAXB);
         Class<?> actual = parser.getClass();
         //then
         Assert.assertEquals(expected,actual);

@@ -13,10 +13,10 @@ public class DeviceJaxbParserTest extends AbstractParserTest {
     public void testUnMarshallShouldParseXmlCorrectly() {
         //given
         DeviceJaxbParser jaxbParser = new DeviceJaxbParser();
-        jaxbParser.buildDevicesList(xmlPath);
+        jaxbParser.buildDevicesList(XML_PATH);
         //when
         List<Device> actual = jaxbParser.getParsedDevices();
         //then
-        Assert.assertEquals(expected,actual);
+        Assert.assertEquals(EXPECTED,actual);
     }
 }

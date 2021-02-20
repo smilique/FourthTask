@@ -14,11 +14,11 @@ public class DeviceDomParserTest extends AbstractParserTest {
     public void testDevicesDomParserShouldReturnListDevicesWhenBothDeviceClassesUsed() {
         //given
         DeviceDomParser domParser = new DeviceDomParser();
-        domParser.buildDevicesList(xmlPath);
+        domParser.buildDevicesList(XML_PATH);
         //when
         List<Device> actual = domParser.getParsedDevices();
         //then
-        Assert.assertEquals(expected, actual);
+        Assert.assertEquals(EXPECTED, actual);
     }
 
 }

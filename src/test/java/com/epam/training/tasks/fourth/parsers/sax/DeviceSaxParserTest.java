@@ -13,11 +13,11 @@ public class DeviceSaxParserTest extends AbstractParserTest {
     public void testDeviceSaxParserShouldReturnListDevicesWhenParseXmlRequested() {
         //given
         DeviceSaxParser saxParser = new DeviceSaxParser();
-        saxParser.buildDevicesList(xmlPath);
+        saxParser.buildDevicesList(XML_PATH);
         //when
         List<Device> actual = saxParser.getParsedDevices();
         //then
-        Assert.assertEquals(expected, actual);
+        Assert.assertEquals(EXPECTED, actual);
     }
 
 

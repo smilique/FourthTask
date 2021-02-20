@@ -20,10 +20,10 @@ import static org.mockito.Mockito.when;
 
 public class DirectorTest {
 
-    private final String xmlValidPath = "./src/test/resources/testdevices.xml";
-    private final String xsdValidPath = "./src/test/resources/testdevices.xsd";
-    private final String xmlInvalidPath = "./this/is/invalid/path.xml";
-    private final String xsdInvalidPath = "./this/is/invalid/path.xsd";
+    private final String XML_VALID_PATH = "./src/test/resources/testdevices.xml";
+    private final String XSD_VALID_PATH = "./src/test/resources/testdevices.xsd";
+    private final String XML_INVALID_PATH = "./this/is/invalid/path.xml";
+    private final String XSD_INVALID_PATH = "./this/is/invalid/path.xsd";
     private final List<Device> VALID_EXPECTED = Arrays.asList(
             new PeripheralDevice("a1111",true,"keyboard","Keyless Genesis",75.0,true,"bluetooth"),
             new PeripheralDevice("b2222", false, "webcam", "Blindman Web Cam", 250.0, false, "USB"),
@@ -37,8 +37,8 @@ public class DirectorTest {
 
     @Before
     public void before() {
-        when(validator.isValid(xsdValidPath)).thenReturn(true);
-        when(validator.isValid(xsdInvalidPath)).thenReturn(false);
+        when(validator.isValid(XSD_VALID_PATH)).thenReturn(true);
+        when(validator.isValid(XSD_INVALID_PATH)).thenReturn(false);
     }
 
     @Test
@@ -47,7 +47,7 @@ public class DirectorTest {
         when(parser.getParsedDevices()).thenReturn(VALID_EXPECTED);
         Director director = new Director(validator,parser);
         //when
-        List<Device> actual = director.parseDevices(xmlValidPath, xsdValidPath);
+        List<Device> actual = director.parseDevices(XML_VALID_PATH, XSD_VALID_PATH);
         //then
         Assert.assertEquals(VALID_EXPECTED,actual);
     }
@@ -58,7 +58,7 @@ public class DirectorTest {
         when(parser.getParsedDevices()).thenReturn(INVALID_EXPECTED);
         Director director = new Director(validator,parser);
         //when
-        List<Device> actual = director.parseDevices(xmlInvalidPath, xsdValidPath);
+        List<Device> actual = director.parseDevices(XML_INVALID_PATH, XSD_VALID_PATH);
         //then
         Assert.assertEquals(INVALID_EXPECTED,actual);
     }
@@ -69,7 +69,7 @@ public class DirectorTest {
         when(parser.getParsedDevices()).thenReturn(VALID_EXPECTED);
         Director director = new Director(validator,parser);
         //when
-        List<Device> actual = director.parseDevices(xmlValidPath, xsdInvalidPath);
+        List<Device> actual = director.parseDevices(XML_VALID_PATH, XSD_INVALID_PATH);
         //then
         Assert.assertEquals(INVALID_EXPECTED,actual);
     }
@@ -80,7 +80,7 @@ public class DirectorTest {
         when(parser.getParsedDevices()).thenReturn(INVALID_EXPECTED);
         Director director = new Director(validator,parser);
         //when
-        List<Device> actual = director.parseDevices(xmlInvalidPath, xsdInvalidPath);
+        List<Device> actual = director.parseDevices(XML_INVALID_PATH, XSD_INVALID_PATH);
         //then
         Assert.assertEquals(INVALID_EXPECTED,actual);
     }

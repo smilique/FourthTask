@@ -5,17 +5,17 @@ import org.junit.Test;
 
 public class XmlValidatorTest {
 
-    private final String schemaPath = "./src/test/resources/testdevices.xsd";
-    private final XmlValidator validator = new XmlValidator(schemaPath);
-    private final String correctXml = "./src/test/resources/testdevices.xml";
-    private final String incorrectXml = "./src/test/resources/testincorrectdevices.xml";
-    private final String incorrectPath = "./incorrect/path/to/xml/file.xml";
+    private final String SCHEMA_PATH = "./src/test/resources/testdevices.xsd";
+    private final XmlValidator VALIDATOR = new XmlValidator(SCHEMA_PATH);
+    private final String CORRECT_XML = "./src/test/resources/testdevices.xml";
+    private final String INCORRECT_XML = "./src/test/resources/testincorrectdevices.xml";
+    private final String INCORRECT_XML_PATH = "./incorrect/path/to/xml/file.xml";
 
     @Test
     public void testXmlValidatorShouldReturnTrueWhenCorrectXmlFileGiven() {
         //given
         //when
-        boolean actual = validator.isValid(correctXml);
+        boolean actual = VALIDATOR.isValid(CORRECT_XML);
         //then
         Assert.assertTrue(actual);
     }
@@ -24,7 +24,7 @@ public class XmlValidatorTest {
     public void testXmlValidatorShouldReturnFalseWhenIncorrectXmlFileGiven() {
         //given
         //when
-        boolean actual = validator.isValid(incorrectXml);
+        boolean actual = VALIDATOR.isValid(INCORRECT_XML);
         //then
         Assert.assertFalse(actual);
     }
@@ -33,7 +33,7 @@ public class XmlValidatorTest {
     public void testXmlValidatorShouldReturnFalseWhenIncorrectXmlFilePathGiven() {
         //given
         //when
-        boolean actual = validator.isValid(incorrectPath);
+        boolean actual = VALIDATOR.isValid(INCORRECT_XML_PATH);
         //then
         Assert.assertFalse(actual);
     }
