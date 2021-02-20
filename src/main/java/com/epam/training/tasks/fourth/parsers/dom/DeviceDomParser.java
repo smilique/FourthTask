@@ -4,6 +4,7 @@ package com.epam.training.tasks.fourth.parsers.dom;
 import com.epam.training.tasks.fourth.entities.Device;
 import com.epam.training.tasks.fourth.entities.NonPeripheralDevice;
 import com.epam.training.tasks.fourth.entities.PeripheralDevice;
+import com.epam.training.tasks.fourth.parsers.DeviceParser;
 import org.apache.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -18,14 +19,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DevicesDomParser {
+public class DeviceDomParser implements DeviceParser {
 
-    private static final Logger LOGGER = Logger.getLogger(DevicesDomParser.class);
+    private static final Logger LOGGER = Logger.getLogger(DeviceDomParser.class);
 
     private List<Device> devices;
     private DocumentBuilder docBuilder;
 
-    public DevicesDomParser() {
+    public DeviceDomParser() {
         this.devices = new ArrayList<>();
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         try {
@@ -35,11 +36,13 @@ public class DevicesDomParser {
         }
     }
 
-    public List<Device> getDevices() {
+    public List<Device> getParsedDevices() {
         return devices;
     }
 
-    public void buildListDevices(String filename) {
+
+
+    public void buildDevicesList(String filename) {
         Document doc = null;
         try {
             doc = docBuilder.parse(filename);
@@ -52,7 +55,7 @@ public class DevicesDomParser {
                 PeripheralDevice device = buildPeripheral(deviceElement);
                 devices.add(device);
             }
-            //simplify and shorten it
+
             NodeList nonPeripheralDevices = root.getElementsByTagName("nonPeripheralDevice");
             for (int i = 0; i < nonPeripheralDevices.getLength(); i++) {
 
@@ -66,7 +69,7 @@ public class DevicesDomParser {
         }
     }
 
-    private Device build (Element deviceElement, Device device) {
+    private Device build(Element deviceElement, Device device) {
 
         device.setId(
                 deviceElement.getAttribute("id"));

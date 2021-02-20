@@ -10,8 +10,8 @@ public class DeviceJaxbParserTest {
     @Test
     public void testUnMarshallShouldParseXmlCorrectly() {
         DeviceJaxbParser unMarshal = new DeviceJaxbParser();
-        List<Device> actual = unMarshal.process("./src/test/resources/testdevices.xml");
-
+        unMarshal.buildDevicesList("./src/test/resources/testdevices.xml");
+        List<Device> actual = unMarshal.getParsedDevices();
         System.out.println(actual);
 
     }

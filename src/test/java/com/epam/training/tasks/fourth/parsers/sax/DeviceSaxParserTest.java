@@ -9,8 +9,6 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 public class DeviceSaxParserTest {
 
 
@@ -25,7 +23,7 @@ public class DeviceSaxParserTest {
                 new NonPeripheralDevice("c3333", true, "motherboard", "MN1700 Motherboard", 740.0, true, "A1"),
                 new NonPeripheralDevice("d4444", false, "processor", "Champion 34230X", 1400.0, false, "A1"));
 
-        List<Device> actual = saxParser.getDevices();
+        List<Device> actual = saxParser.getParsedDevices();
 
         Assert.assertEquals(expected, actual);
     }

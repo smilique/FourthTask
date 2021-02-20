@@ -4,6 +4,7 @@ import com.epam.training.tasks.fourth.entities.Device;
 import com.epam.training.tasks.fourth.entities.DeviceEnum;
 import com.epam.training.tasks.fourth.entities.NonPeripheralDevice;
 import com.epam.training.tasks.fourth.entities.PeripheralDevice;
+import com.epam.training.tasks.fourth.parsers.ParserException;
 import org.apache.log4j.Logger;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
@@ -128,7 +129,11 @@ public class DeviceSaxHandler extends DefaultHandler {
 
                 default: {
                     //rewrite to own exception
-                    throw new EnumConstantNotPresentException(currentEnum.getDeclaringClass(), currentEnum.name());
+                    try {
+                        throw new ParserException(currentEnum);
+                    } catch (ParserException e) {
+                        LOGGER.error(e.getMessage() + " " + e);
+                    }
                 }
             }
         }

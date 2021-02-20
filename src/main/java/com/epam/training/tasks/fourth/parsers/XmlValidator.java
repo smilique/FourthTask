@@ -24,6 +24,7 @@ public class XmlValidator {
     }
 
     boolean isValid (String fileName) {
+        LOGGER.info("Validating " + fileName);
         SchemaFactory schemaFactory = SchemaFactory.newInstance(language);
         File schemaLocation = new File(schemaName);
         try {
@@ -33,10 +34,7 @@ public class XmlValidator {
             validator.validate(source);
             LOGGER.info(fileName + " is valid.");
             return true;
-        } catch (SAXException e) {
-            LOGGER.error(fileName + " is not valid because " + e.getMessage());
-            return false;
-        } catch (IOException e) {
+        } catch (SAXException | IOException e) {
             LOGGER.error(fileName + " is not valid because " + e.getMessage());
             return false;
         }

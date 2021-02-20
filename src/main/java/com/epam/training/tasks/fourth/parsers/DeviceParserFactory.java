@@ -1,5 +1,7 @@
 package com.epam.training.tasks.fourth.parsers;
 
+import com.epam.training.tasks.fourth.parsers.dom.DeviceDomParser;
+import com.epam.training.tasks.fourth.parsers.jaxb.DeviceJaxbParser;
 import com.epam.training.tasks.fourth.parsers.sax.DeviceSaxParser;
 
 
@@ -11,10 +13,10 @@ public class DeviceParserFactory {
                 return new DeviceSaxParser();
             }
             case DOM: {
-                //return new DevicesDomBuilder();
+                return new DeviceDomParser();
             }
             case JAXB: {
-                //return new DevicesJaxbBuilder();
+                return new DeviceJaxbParser();
             }
             default: {
                 throw new EnumConstantNotPresentException(type.getDeclaringClass(), type.name());
@@ -23,6 +25,5 @@ public class DeviceParserFactory {
     }
 
 }
-//в валидаторе передать xds в конструктор (не в метод)
 
-//для девайса можно сделать через билдер
+

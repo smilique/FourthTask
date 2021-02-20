@@ -30,7 +30,7 @@ public class DeviceSaxParser implements DeviceParser {
         }
     }
 
-    public List<Device> getDevices() {
+    public List<Device> getParsedDevices() {
         return devices;
     }
 
@@ -38,7 +38,7 @@ public class DeviceSaxParser implements DeviceParser {
         try {
             reader.parse(filename);
         } catch (SAXException e) {
-            LOGGER.error("SAX parsser error" + e);
+            LOGGER.error("SAX parser error" + e);
 
         } catch (IOException e) {
             LOGGER.error("IO exception" + e);
