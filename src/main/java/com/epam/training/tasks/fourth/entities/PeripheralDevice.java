@@ -13,7 +13,6 @@ public class PeripheralDevice extends Device {
     private String connection;
 
     public PeripheralDevice() {
-
     }
 
     public PeripheralDevice(String id, boolean inStock, String type, String name, Double price, boolean backlight, String connection) {
@@ -24,7 +23,6 @@ public class PeripheralDevice extends Device {
         setPrice(price);
         setBacklight(backlight);
         setConnection(connection);
-
     }
 
     public void setConnection(String connection) {

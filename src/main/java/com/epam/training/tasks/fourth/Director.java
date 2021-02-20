@@ -22,7 +22,7 @@ public class Director {
     }
 
     public List<Device> parseDevices(String filename, String schema) {
-        LOGGER.info("Validating devices with " + schema);
+        LOGGER.info("Validating devices with " + schema + " schema");
         List<Device> devices = new ArrayList<>();
         if (validator.isValid(schema)) {
             LOGGER.info("Parsing devices with " + parser);

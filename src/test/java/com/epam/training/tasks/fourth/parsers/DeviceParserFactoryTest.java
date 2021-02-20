@@ -7,7 +7,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import static com.epam.training.tasks.fourth.parsers.ParserType.*;
-import static org.junit.Assert.*;
 
 public class DeviceParserFactoryTest {
 

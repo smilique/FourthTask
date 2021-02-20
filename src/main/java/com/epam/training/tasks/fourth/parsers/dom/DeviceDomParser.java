@@ -47,7 +47,6 @@ public class DeviceDomParser implements DeviceParser {
         try {
             doc = docBuilder.parse(filename);
             Element root = doc.getDocumentElement();
-
             NodeList peripheralDevices = root.getElementsByTagName("peripheralDevice");
             for (int i = 0; i < peripheralDevices.getLength(); i++) {
 
@@ -55,7 +54,6 @@ public class DeviceDomParser implements DeviceParser {
                 PeripheralDevice device = buildPeripheral(deviceElement);
                 devices.add(device);
             }
-
             NodeList nonPeripheralDevices = root.getElementsByTagName("nonPeripheralDevice");
             for (int i = 0; i < nonPeripheralDevices.getLength(); i++) {
 
@@ -63,7 +61,6 @@ public class DeviceDomParser implements DeviceParser {
                 NonPeripheralDevice device = buildNonPeripheral(deviceElement);
                 devices.add(device);
             }
-
         } catch (IOException | SAXException e ) {
             LOGGER.error(e.getMessage() + e);
         }
@@ -71,15 +68,17 @@ public class DeviceDomParser implements DeviceParser {
 
     private Device build(Element deviceElement, Device device) {
 
-        device.setId(
-                deviceElement.getAttribute("id"));
-        device.setInStock(
-                Boolean.parseBoolean(
-                        deviceElement.getAttribute("in-stock")));
+        String id = deviceElement.getAttribute("id");
+        device.setId(id);
+        String inStockAttribute = deviceElement.getAttribute("in-stock");
+        boolean isInStock = Boolean.parseBoolean(inStockAttribute);
+        device.setInStock(isInStock);
         device.setType(getElementTextContent(deviceElement, "type"));
         device.setName(getElementTextContent(deviceElement,"name"));
-        device.setPrice(Double.parseDouble(getElementTextContent(deviceElement,"price")));
-        device.setBacklight(Boolean.parseBoolean(getElementTextContent(deviceElement,"backlight")));
+        double price = Double.parseDouble(getElementTextContent(deviceElement,"price"));
+        device.setPrice(price);
+        boolean withBacklight = Boolean.parseBoolean(getElementTextContent(deviceElement,"backlight"));
+        device.setBacklight(withBacklight);
 
         return device;
     }
@@ -103,6 +102,7 @@ public class DeviceDomParser implements DeviceParser {
         NodeList nodeList = element.getElementsByTagName(elementName);
         Node node = nodeList.item(0);
         String value = node.getTextContent();
+
         return value;
     }
 

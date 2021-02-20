@@ -26,7 +26,7 @@ public class DeviceSaxParser implements DeviceParser {
             reader = XMLReaderFactory.createXMLReader();
             reader.setContentHandler(handler);
         } catch (SAXException e) {
-            System.out.println("SAX parser error " + e);
+            LOGGER.error("SAX parser error " + e);
         }
     }
 
@@ -39,7 +39,6 @@ public class DeviceSaxParser implements DeviceParser {
             reader.parse(filename);
         } catch (SAXException e) {
             LOGGER.error("SAX parser error" + e);
-
         } catch (IOException e) {
             LOGGER.error("IO exception" + e);
         }

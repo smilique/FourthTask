@@ -30,12 +30,12 @@ public class DeviceJaxbParser implements DeviceParser {
             Unmarshaller unmarshaller = context.createUnmarshaller();
             reader = new FileReader(filename);
             devices = (Devices) unmarshaller.unmarshal(reader);
+
             } catch (JAXBException e) {
             LOGGER.error("JAXB Exception " + e.getMessage() + e);
 
             } catch (FileNotFoundException e) {
             LOGGER.error("File not found " + e.getMessage() + e);
-
         }
         finally {
             try {

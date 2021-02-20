@@ -22,7 +22,6 @@ public class NonPeripheralDevice extends Device {
         setPrice(price);
         setBacklight(backlight);
         setSlot(slot);
-
     }
 
     public void setSlot(String slot) {

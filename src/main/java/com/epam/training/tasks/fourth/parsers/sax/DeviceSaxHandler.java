@@ -106,7 +106,6 @@ public class DeviceSaxHandler extends DefaultHandler {
                     boolean currentBacklight = Boolean.parseBoolean(element);
                     currentDevice.setBacklight(currentBacklight);
                     break;
-
                 }
                 case SLOT: {
                     if (currentDevice instanceof NonPeripheralDevice) {
@@ -114,21 +113,17 @@ public class DeviceSaxHandler extends DefaultHandler {
                     }
                     break;
                 }
-
                 case DEVICES:
                 {
                     break;
                 }
-
                 case CONNECTION: {
                     if (currentDevice instanceof PeripheralDevice) {
                         ((PeripheralDevice) currentDevice).setConnection(element);
                     }
                     break;
                 }
-
                 default: {
-                    //rewrite to own exception
                     try {
                         throw new ParserException(currentEnum);
                     } catch (ParserException e) {
