@@ -1,5 +1,5 @@
 # FourthTask
 
-<img src="uml.svg">
+<img src="https://raw.githubusercontent.com/smilique/FourthTask/main/uml.svg">
 
 
